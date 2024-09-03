@@ -218,7 +218,7 @@ def consumer_options():
 	
 	parser.add_argument('-d', '--database', dest='database', default = None,
 						help='An initialized FastAAI v2 database')
-	parser.add_argument('-g', '--genomes', dest='genomes_dir', default = None,
+	parser.add_argument('-g', '--genomes', dest='genome_dir', default = None,
 						help='A directory containing genomes to preprocess')
 	parser.add_argument('--taxonomy_file', dest='tax', default = None,
 						help='A tab-separated file containing genome ID in column 1, GTDB-formatted taxonomy string in column 2. No header.')
