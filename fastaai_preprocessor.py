@@ -216,7 +216,7 @@ import argparse
 def consumer_options():
 	parser = argparse.ArgumentParser(description='Process genomes into FastAAI v2 crystals. Needs a database that has been initialized with fastaai2 init and a set of genomes')
 	
-	parser.add_argument('-db', '--database', dest='database', default = None,
+	parser.add_argument('-d', '--database', dest='database', default = None,
 						help='An initialized FastAAI v2 database')
 	parser.add_argument('-g', '--genomes', dest='genomes_dir', default = None,
 						help='A directory containing genomes to preprocess')
