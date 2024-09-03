@@ -66,7 +66,8 @@ class fastaai_preprocessor:
 			preproc_args = [prokaryotic_input_file(input_genome = g,
 													taxonomy = self.tax_by_genome[get_basename(g)],
 													compress = self.compress,
-													pyhmmer_manager = pyhmmerer) for g in genome_files]
+													pyhmmer_manager = pyhmmerer,
+													nucleotide_output = self.output_nt) for g in genome_files]
 			
 		if self.module == "eukaryotes":
 			pass
@@ -153,7 +154,7 @@ class prokaryotic_input_file:
 		if self.protein_file_aa is None:
 			self.protein_file_aa = os.path.normpath(self.prot_aa_out_dir + "/" +self.name_base+"_protein_aa.txt")
 			if self.output_nt:
-				self.protein_file_nt = os.path.normpath(self.prot_aa_out_dir + "/" +self.name_base+"_protein_nt.txt")
+				self.protein_file_nt = os.path.normpath(self.prot_nt_out_dir + "/" +self.name_base+"_protein_nt.txt")
 			else:
 				self.protein_file_nt = None
 			
