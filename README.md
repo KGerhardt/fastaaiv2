@@ -17,4 +17,34 @@ FastAAI v2 rectifies these issues:
 * User-defined labelling of collections of genomes within a database, e.g. bacteria and archaea, with support for post-processing to further increase AAI estimation accuracy
 * Taxonomic labelling if deisred
 
-FastAAI v2 consists of 5 steps: database initialization, preprocessing, database construction, database finalization, and database searching
+FastAAI v2 consists of 5 steps: database initialization, preprocessing, database construction, database finalization, and querying. See the example_prokaryote_files zip for an example of the instructions for building and querying a complete FastAAI v2 database.
+
+## Initialization
+
+fastaai_main init
+
+The initialization step creates an empty databases, flags it as either prokaryotic or eukaryotic and adds HMM models to the database. Optionally, a user can also provide a ruleset for identifying genomes as belonging to user-defined genome groups, post-processing for each pair of groups, and include per-SCP AAI models. 
+
+## Preprocessing
+
+fastaai_main preproc
+
+Uses an initialized database as a repository for SCPs and predicts proteins for each genome in a collection, identifies SCP representatives within those proteins, and extracts all of the information FastAAI uses to construct a database into a file FastAAI calls a "crystal." Crystals are portable, lightweight representations of a genome ready to be added to a FastAAI database in your project or elsewhere. Optionally, add taxonomic information for each genome; this information will be stored in the crystal as well.
+
+## Database construction
+
+fastaai_main consume
+
+Add a collection of crystals to a FastAAI database. The SCPs within each crystal must be the same or a subset of the SCPs within the database; FastAAI will skip any SCPs which are not.
+
+## Database finalization
+
+fastaai_main finalize
+
+Convert the records in a FastAAI database into a faster, query-friendly representation prior to a search.
+
+## Querying
+
+fastaai_main query
+
+Search one FastAAI database against another. At least some SCPs must be shared in common between the two databases for a search to proceed. FastAAI will use the target database, specificed with -tdb in the fastaai_main query command, as the source of per-SCP AAI models and genome labelling rules.
